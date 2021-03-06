@@ -41,6 +41,17 @@
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
+        {% with  messages=get_flashed_messages(with_categories=true)  %}
+            <!-- this will show the error messages. -->
+          {% if messages %}
+                <!-- checks whether or not message works or not -->
+            {% for category,message in messages %}
+                <div class="alert alert-{{ category }}">
+                {{ message }}
+                </div>
+              {% endfor %}
+            {% endif %}
+        {% endwith %}
           {% block content %}{% endblock %}
         </div>
         <div class="col-md-4">
